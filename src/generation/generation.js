@@ -1,15 +1,16 @@
 const path = require('path');
 const fs = require('fs');
 const fileM = require('./fileManager');
+const config = require("../config");
  
 var generation= {} ;
 var className='' ;
 var properties=[] ;
 var projectPath='';
-var projectName ='islah_v3' ;
-var domainProjectName ='Domain' ;
-var serviceProjectName ='Service' ;
-var entityBuilder='entityBuilder.';
+var projectName =config.projectName ;
+var domainProjectName =config.domainProjectName;
+var serviceProjectName =config.serviceProjectName ;
+var entityBuilder=config.entityBuilder;
  
 
 var getDependenciesString =(depandencies)=>{
@@ -72,6 +73,8 @@ var replace=(templateFile , from , to  )=>{
    return templateFile.replace(content,to);
 }
 generation.generateClasses = function (projectPathUrl ,classname , propertylist ) {
+
+    
     className=classname;
     properties=propertylist;
     projectPath =projectPathUrl;

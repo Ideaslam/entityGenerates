@@ -1,0 +1,133 @@
+<html>
+
+<head>
+
+        
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+
+
+    <body>
+        
+
+        <div class="container" >
+            <form action="">
+                <div class="row"  >
+                   
+                   <label for="" style="font-size: 30px;margin-left: 25%">Entity Generator</label>
+                 
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                         <h6 id="error" style="color:red"></h6>
+                        <input placeholder="Project Url" type="text" id="project-url" class=" form-control"     required >
+                    </div>
+                </div>
+
+                <div class="row">
+                        <div class="col-md-4">
+                             <!-- <h6>Project</h6> -->
+                            <input placeholder="Project Name" type="text" id="project-name"  class=" form-control" required>
+                        </div>                
+                            <div class="col-md-4">
+                                 <!-- <h6>Domain Project</h6> -->
+                                <input placeholder="Domain Name"  id="domain-name" type="text" class=" form-control" required>
+                            </div>
+                                <div class="col-md-4">
+                                    <!-- <h6>Service Project</h6> -->
+                                    <input placeholder="Service Name" id="service-name" type="text" class=" form-control" required>
+                                </div>
+                </div>
+                <div class="row">
+                        <div class="col-md-6">
+                                <!-- <h6>  Property</h6> -->
+                                <input id="entity-name" placeholder="Entity Name"  type="text" class=" form-control"  required>
+                            </div>
+
+                </div>
+               <div class="row">
+
+                                <div class="col-md-6">
+                                        <!-- <h6>  Property</h6> -->
+                                        <input id="property-name" placeholder="Property Name"  type="text" class=" form-control"  >
+                                    </div>
+
+                                <div class="col-md-3">
+                                    <!-- <h6>Data Type</h6> -->
+                                    
+                                     <select  class="datatypes form-control" name="datatype" id="datatype-select"  >
+                                            <option value="-1"> -- Data Type -- </option>
+                                            <option value="string">string</option>
+                                            <option value="int">int</option>
+                                            <option value="double">double</option>
+                                            <option value="long">long</option>
+                                            <option value="bool">bool</option>
+                                            <option value="date">date</option>
+
+                                    </select>
+                                    
+                                </div>
+                                <div class="col-3">
+                                        <button   type="button" class="btn btn-success" onclick="setProperty()">Add Entity</button>
+
+                                      
+                                </div>
+
+                               
+                            
+                              
+                </div>
+
+
+
+                        <table class="table  ">
+                                <thead>
+                                  <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Property Name</th>
+                                    <th scope="col">Datatype</th>
+                                    <th scope="col">Action</th>
+                                  </tr>
+                                </thead>
+                                <tbody id="table-body">
+                                  
+                                </tbody>
+                              </table>
+
+                              <div class="row">
+                                  <div class="col-4"></div>
+                                  <div class="col-4">
+                                        <button id="generate" style="font-size:20px" type="submit" class="btn btn-success">Generate</button>
+                                  </div>
+                                
+                              </div>
+
+                            </form>
+
+
+        </div>
+         
+
+
+
+         <div id="modal"style="display:none;border-radius:10px ;background: #5a5a5a;width:600px;height: 100px; position: absolute; 
+         z-index: 100; margin: 30% ;top:0;text-align: center ">
+                <label id="modal-body" for="" style="color:white;font-size: 30px;font-weight: bolder">DONE</label>
+
+                <button style="float: right ; margin:5%;" class="btn" onclick="closeModal()" >close</button>
+         </div>
+
+
+         <script src="js/core.min.js"></script>
+        <script src="js/script.js"></script>
+        <script src="js/callWebService.js"></script>
+        <script src="js/main.js"></script>
+
+         
+    
+
+    </body>
+</html>
