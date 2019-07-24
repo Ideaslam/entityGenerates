@@ -30,10 +30,10 @@ function clearProperty()
 function clearAll( )
 {
     clearProperty();
-     $('#project-url').val('');
-     $('#project-name').val('');
-     $('#domain-name').val('');
-     $('#service-name').val('');
+     //$('#project-url').val('');
+    // $('#project-name').val('');
+    // $('#domain-name').val('');
+    // $('#service-name').val('');
      properties=[]
      entities ={};
      generateTable();

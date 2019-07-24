@@ -11,6 +11,9 @@ var projectName =config.projectName ;
 var domainProjectName =config.domainProjectName;
 var serviceProjectName =config.serviceProjectName ;
 var entityBuilder=config.entityBuilder;
+var repositoryProjectName =config.repositoryProjectName;
+var appStartUpName =config.appStartUpName ;
+var appContextName=config.appContextName;
  
 
 var getDependenciesString =(depandencies)=>{
@@ -65,6 +68,35 @@ var generate=(name , template , replacement ,filepath)=>{
     
  
  
+var appendContext=(context)=>{
+    let templateFile = fileM.readFile( `${projectPath}/${repositoryProjectName}/`+`${appContextName}.cs`) ;
+    var finalFile =templateFile ;
+    finalFile=   replace(finalFile , `//lastContext`  ,  context+" //lastContext" ) ; 
+    let filename =  `${projectPath}/${repositoryProjectName}/`+`${appContextName}.cs` ;
+    fileM.writeFile(filename,finalFile) ;
+    console.log(filename);
+
+};
+var appendInjection=(injection ,injectionUsing)=>{
+    let templateFile = fileM.readFile( `${projectPath}/${projectName}/`+`${appStartUpName}.cs`) ;
+    var finalFile =templateFile ;
+    finalFile=   replace(finalFile , `//lastInjection`  ,  injection+" //lastInjection" ) ; 
+ 
+    finalFile=   replace(finalFile , `//lastUsing`  ,  injectionUsing+" //lastUsing" ) ; 
+   
+    let filename =  `${projectPath}/${projectName}/`+`${appStartUpName}.cs` ;
+    fileM.writeFile(filename,finalFile) ;
+    console.log(filename);
+};
+
+// var appendInjectionUsing=(using)=>{
+//     let templateFile = fileM.readFile( `${projectPath}/${projectName}/`+`${appStartUpName}.cs`) ;
+//     var finalFile =templateFile ;
+//     finalFile=   replace(finalFile , `//lastInjectionUsing`  , using+" //lastInjectionUsing" ) ; 
+//     let filename =  `${projectPath}/${projectName}/`+`${appStartUpName}.cs` ;
+//     fileM.writeFile(filename,finalFile) ;
+//     console.log(filename);
+// };
 
 
 var replace=(templateFile , from , to  )=>{
@@ -84,6 +116,23 @@ generation.generateClasses = function (projectPathUrl ,classname , propertylist 
          generate(c.fileName ,c.template ,c.replacement ,c.filePath);
      });
 
+
+
+     
+     var context = replace(config.contextTemplate,'{{entity}}' ,className) ;
+    
+     appendContext(context);
+
+     var injectionUsing = replace(config.injectionUsing ,'{{entity}}' ,className) ;
+         injectionUsing = replace(injectionUsing,'{{serviceProjectName}}' ,serviceProjectName) ;
+     var injection = replace(config.injectionTemplate,'{{entity}}' ,className) ; 
+     
+     appendInjection(injection ,injectionUsing);
+
+   
+
+   
+  
   
     
      
@@ -188,7 +237,7 @@ var getLowerCase =(name)=>{
             filePath:`${projectPath}/${projectName}/Controllers`,
         }
         
-        
+          
         
         ]
 

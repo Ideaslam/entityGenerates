@@ -35,7 +35,7 @@ namespace {namespace}
         }
 
         // GET: api/{className}/5
-        [HttpGet("{id}", Name = "Get")]
+        [HttpGet("{id}")]
         public  ActionResult<{className}>  Get(int id)
         { 
               {className} {variableClassName} =new {className}() ;
