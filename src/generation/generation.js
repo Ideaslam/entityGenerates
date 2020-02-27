@@ -231,7 +231,8 @@ var getLowerCase =(name)=>{
                 namespace:`${domainProjectName}.Mappers`,
                 dependencies :getDependenciesString(['Microsoft.EntityFrameworkCore.Metadata.Builders'])  ,              
                 properties:getMappingPropertiesString(properties),
-                mappingString:getMappingString(properties)
+                mappingString:getMappingString(properties,'entiry'),
+                mappingStringDto:getMappingString(properties,'dto'),
         
             },
             filePath:`${projectPath}/${domainProjectName}/Mappers`,

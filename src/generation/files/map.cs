@@ -39,7 +39,7 @@ namespace  {namespace}
             if ({variableClassName}Dto == null) return null;
             var {variableClassName} = new {className}()
             {
-                {mappingString}
+                {mappingStringDto}
 
             };
             return {variableClassName};
