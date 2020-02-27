@@ -100,6 +100,10 @@ function generateTable()
 
 
 $('form').on('submit', function(e) {
+
+    if (!confirm('Are you sure ?'))  
+    return false ;
+    
     e.preventDefault();
     entities.projectUrl=$('#project-url').val();
     entities.projectName=$('#project-name').val();
