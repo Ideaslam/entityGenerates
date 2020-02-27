@@ -1,63 +1,68 @@
-﻿ 
+﻿
 {dependencies}
 using System;
 using System.Collections.Generic;
 
 
-
-
 namespace {namespace}
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
-    public class {className}Controller : ControllerBase    {
+    public class {className}Controller : ControllerBase
 
+    {
 
-      
-            private readonly {serviceProjectName}.{className}Service.I{className}Service {variableClassName}Service;
+        private readonly I{className}Service {variableClassName}Service;
+
+        public {className}Controller(I{className}Service {variableClassName}Service)
+        {
+            this.{variableClassName}Service = {variableClassName}Service;
             
-
-            public {className}Controller({serviceProjectName}.{className}Service.I{className}Service {variableClassName}Service )
-            {
-                this.{variableClassName}Service = {variableClassName}Service;
-                 
-            }
-
-      
+        }
 
 
         // GET: api/{className}
+        [ActionName("GetAll")]
         [HttpGet]
-        public IEnumerable<{className}> Get()
+        public IActionResult Get()
         {
-             List<{className}> {variableClassName} = new List<{className}>() ;
-             return {variableClassName}; 
+            return Ok({variableClassName}Service.Get{className}s());
         }
 
+
+ 
+
         // GET: api/{className}/5
-        [HttpGet("{id}")]
-        public  ActionResult<{className}>  Get(int id)
-        { 
-              {className} {variableClassName} =new {className}() ;
-             return {variableClassName}; 
+        [ActionName("GetOne")]
+        [HttpGet]
+        public IActionResult GetOne([FromQuery(Name = "id")] int id)
+        {
+            return Ok({variableClassName}Service.Get{className}(id));
         }
 
         // POST: api/{className}
         [HttpPost]
-        public void Post([FromBody] string value)
+        public IActionResult Post([FromBody] {className}  {variableClassName})
         {
+            return Ok({variableClassName}Service.Insert{className}({variableClassName}));
         }
+
+       
 
         // PUT: api/{className}/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut]
+        public IActionResult Put([FromQuery(Name = "id")] int id, [FromBody] {className} {variableClassName})
         {
+            return Ok({variableClassName}Service.Update{className}({variableClassName}));
         }
 
-        // DELETE: api/ApiWithActions/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+
+      
+
+        [HttpDelete]
+        public IActionResult Delete([FromQuery(Name ="id")] int id)
         {
+            return Ok({variableClassName}Service.Delete{className}(id));
         }
     }
 }
